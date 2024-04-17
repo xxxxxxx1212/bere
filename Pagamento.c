@@ -3,7 +3,7 @@ static float gastosTotais;
 // Mostra o valor a ser pago em cartao
 static void tratarCartao()
 {
-    system("clear");
+    system("cls");
     printf("Valor total: %.2f \n", gastosTotais);
 }
 // Verifica se o cartao conseguiu ser usado na maquina de cartao
@@ -28,26 +28,23 @@ static int maquinaDeCartao()
 }
 
 // Cria o desconto correspodente, e mostra o valor a ser pago em dinheiro
-static void tratarDinheiro()
+static float tratarDinheiro()
 {
-    system("clear");
+    system("cls");
 
     float porcentagem = 0.0;
     float desconto = 0;
     float valorComDesconto = 0;
 
-    if(gastosTotais > 0 && gastosTotais <= 50)
-    {
+    if(gastosTotais > 0 && gastosTotais <= 50) {
         porcentagem = 0.05;
 
     }
-    else if(gastosTotais > 50 && gastosTotais <= 99)
-    {
+    else if(gastosTotais > 50 && gastosTotais <= 99) {
         porcentagem = 0.10;
 
     }
-    else
-    {
+    else {
         porcentagem = 0.18;
     }
 
@@ -57,6 +54,8 @@ static void tratarDinheiro()
     printf("Valor total: %.2f \n", gastosTotais);
     printf("Valor descontado: %.2f \n", desconto);
     printf("Valor final com desconto: %.2f \n", valorComDesconto);
+
+    return valorComDesconto;
 }
 
 // Pede o tipo de pagamento
@@ -73,6 +72,7 @@ static int tipoPagamento(float gastos)
 
     printf("1. cartao \n");
     printf("2. dinheiro (tem desconto)\n");
+    printf("3. voltar \n");
     scanf("%d", &formaPagamento);
 
     return formaPagamento;

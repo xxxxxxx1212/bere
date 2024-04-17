@@ -3,11 +3,11 @@
 // #include <TIME.H>
 
 #include "Menu.c"
+#include "CarrinhoDeCompras.c"
 #include "Padaria.c"
 #include "Limpeza.c"
 #include "Alimentos.c"
 #include "Pagamento.c"
-#include "CarrinhoDeCompras.c"
 
 // posicao 0 eh generico, 1 eh limpeza, 2 eh alimentos, 3 eh padaria
 static float faturamento[4] = {0,0,0,0};
@@ -123,8 +123,11 @@ void chamarPagamento()
             tratarCartao();
         }
     }
+    else if(tipoPago == 2){
+        gastos[0] = tratarDinheiro();
+    }
     else {
-        tratarDinheiro();
+        main();
     }
     printf("\n Pagamento realizado!");
 
@@ -145,7 +148,7 @@ void chamarPagamento()
 // termina o faturamento, mostrando as vendas do dia.
 void terminarFaturamento()
 {
-    system("clear");
+    system("cls");
     printf("--/--/--/--/--/--/");
     printf("\n");
     printf("Faturamento de limpeza: %.2f", faturamento[1]);
@@ -165,7 +168,7 @@ void terminarFaturamento()
 // mostra os valores que tem que pagar
 void mostrarAPagar()
 {
-    system("clear");
+    system("cls");
     printf("--/--/--/--/--/--/");
     printf("\n");
     printf("Valor da Limpeza a pagar: %.2f", gastos[1]);

@@ -9,53 +9,50 @@ static char nomeProdutoLimpeza[5][50] =
 static float precoLimpeza[5] = {9.5, 12.5, 1.9, 8.50};
 static int repeticaoLimpeza = 4;
 
-static float redirecionarGastoLimpeza(int codigoCompra, int quantidade)
+//Funcao que recebe o codigo, reenvia para a funcao de pegar a quantidade, e retorna o preco correspodente
+static float retornoPrecoLimpeza(int codigoCompra)
 {
     float preco = 0;
+    int quantidade = 0;
 
     switch(codigoCompra){
         case 11:
             preco = precoLimpeza[0];
-            addItemCarrinho(nomeProdutoLimpeza[0], precoLimpeza[0], quantidade);
+            quantidade = pegarQuantidade(nomeProdutoLimpeza[0], precoLimpeza[0], codigosLimpeza[0]);
             break;
         case 12:
             preco = precoLimpeza[1];
-            addItemCarrinho(nomeProdutoLimpeza[1], precoLimpeza[1], quantidade);
+            quantidade = pegarQuantidade(nomeProdutoLimpeza[1], precoLimpeza[1], codigosLimpeza[1]);
             break;
         case 13:
             preco = precoLimpeza[2];
-            addItemCarrinho(nomeProdutoLimpeza[2], precoLimpeza[2], quantidade);
+            quantidade = pegarQuantidade(nomeProdutoLimpeza[2], precoLimpeza[2], codigosLimpeza[2]);
             break;
         case 14:
             preco = precoLimpeza[3];
-            addItemCarrinho(nomeProdutoLimpeza[3], precoLimpeza[3], quantidade);
+            quantidade = pegarQuantidade(nomeProdutoLimpeza[3], precoLimpeza[3], codigosLimpeza[3]);
             break;
         default:
             preco = 0.0;
             break;
     }
 
-    preco = preco * quantidade;
+    preco = (float) preco * quantidade;
 
     return preco;
 }
 
+// envia os dados da Limpeza para o menu generico; depois recebe o codigo e retorna o valor retornado por retornoPreco
 static float chamarMenuLimpeza()
 {
-    int codigoCompra = 0, quantidade, preco = 0;
+    int codigoCompra = 0;
+    float preco = 0;
 
     menuGenerico(codigosLimpeza, nomeProdutoLimpeza, precoLimpeza, repeticaoLimpeza);
 
     scanf("%d", &codigoCompra);
 
-    if(codigoCompra == 0){
-        return preco;
-    }
-
-    printf("\nQuantas unidades desse produto você deseja: ");
-    scanf("%d", &quantidade);
-
-    preco = redirecionarGastoLimpeza(codigoCompra, quantidade);
+    preco = retornoPrecoLimpeza(codigoCompra);
 
     return preco;
 }
