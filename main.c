@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <TIME.H>
+#include <time.h>
 
 #include "Menu.c"
 #include "CarrinhoDeCompras.c"
